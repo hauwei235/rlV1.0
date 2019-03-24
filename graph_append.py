@@ -25,7 +25,7 @@ class graph_set():
                 weight = float(int(line.split(',')[1]))
                 is_double = line.split(',')[6].strip().strip(')')
                 if is_double =='1':#双向道路
-                    g.add_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id}),(end_node,start_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id)}])
+                    g.add_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id}),(end_node,start_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id})])
                     #print ('double')
                 else :
                     g.add_weighted_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id})])
