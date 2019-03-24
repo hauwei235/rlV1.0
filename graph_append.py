@@ -10,24 +10,25 @@ class graph_set():
         pass
     def draw(self):
         nodelist = []
+        road_id = 0
         while True:
             line = f.readline()
             if line:
                 start_node = int(line.split(',')[4])
                 end_node = int(line.split(',')[5])
                 speed_limit  = int(line.split(',')[2])
+                road_id = int(line.split(',')[0].strip('('))#道路id
                 nodelist.append(start_node)
                 nodelist = list(set(nodelist))
-                road_id = int(line.split(',')[0].strip('('))#道路id
                 #print (nodelist)
                 g.add_nodes_from(nodelist)
                 weight = float(int(line.split(',')[1]))
                 is_double = line.split(',')[6].strip().strip(')')
-                if is_double =='1':
-                    g.add_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit}),(end_node,start_node,{'weight':weight,'speed_limit':speed_limit})])
+                if is_double =='1':#双向道路
+                    g.add_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id}),(end_node,start_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id)}])
                     #print ('double')
                 else :
-                    g.add_weighted_edges_from([(start_node,end_node,weight)])
+                    g.add_weighted_edges_from([(start_node,end_node,{'weight':weight,'speed_limit':speed_limit,'road_id':road_id})])
                     #print ('not')
             else :
                 break
