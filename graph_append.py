@@ -18,6 +18,7 @@ class graph_set():
                 speed_limit  = int(line.split(',')[2])
                 nodelist.append(start_node)
                 nodelist = list(set(nodelist))
+                road_id = int(line.split(',')[0].strip('('))#道路id
                 #print (nodelist)
                 g.add_nodes_from(nodelist)
                 weight = float(int(line.split(',')[1]))
