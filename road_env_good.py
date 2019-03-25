@@ -94,7 +94,7 @@ class road():
                 left_distance = distance - time*speed
             else:
                 time = math.floor((distance - (speed - left_distance))/speed)+1
-                left_distance = distance - time *speed - (speed - left_distance)
+                left_distance = distance - (time - 1) *speed - (speed - left_distance)
         #print(time,left_distance,speed)
         return time,left_distance
 # g = graph_set().draw()
